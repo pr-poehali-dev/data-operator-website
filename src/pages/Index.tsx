@@ -53,28 +53,30 @@ const TestimonialsCarousel = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <div className="max-w-4xl mx-auto">
-      <div className="flex flex-col items-end text-right py-12">
-        <Avatar className="w-14 h-14 mb-6 bg-gray-400/60 transition-all duration-500">
-          <AvatarFallback className="text-white text-base">
-            {testimonials[activeIndex].initials}
-          </AvatarFallback>
-        </Avatar>
-        
-        <blockquote className="text-lg text-gray-600 leading-relaxed mb-6 max-w-2xl italic font-light">
-          "{testimonials[activeIndex].quote}"
-        </blockquote>
-        
-        <div className="mb-10">
-          <div className="text-gray-900 text-sm font-normal">
-            {testimonials[activeIndex].name}
-          </div>
-          <div className="text-gray-500 text-xs font-light">
-            {testimonials[activeIndex].role}
+    <div className="max-w-3xl mx-auto">
+      <div className="flex flex-col items-center py-12">
+        <div className="w-full max-w-xl text-right">
+          <Avatar className="w-12 h-12 mb-6 ml-auto bg-gray-400/60 transition-all duration-500">
+            <AvatarFallback className="text-white text-sm">
+              {testimonials[activeIndex].initials}
+            </AvatarFallback>
+          </Avatar>
+          
+          <blockquote className="text-base text-gray-600 leading-relaxed mb-6 italic font-light">
+            "{testimonials[activeIndex].quote}"
+          </blockquote>
+          
+          <div className="mb-10">
+            <div className="text-gray-900 text-sm font-normal">
+              {testimonials[activeIndex].name}
+            </div>
+            <div className="text-gray-500 text-xs font-light">
+              {testimonials[activeIndex].role}
+            </div>
           </div>
         </div>
 
-        <div className="flex items-center gap-1.5">
+        <div className="flex items-center justify-center gap-1.5">
           {testimonials.map((testimonial, idx) => (
             <button
               key={testimonial.id}
