@@ -13,7 +13,7 @@ const testimonials = [
     role: 'Senior Data Analyst',
     quote: 'Работа с данными — это возможность влиять на стратегические решения компании. Каждый день я вижу, как мои анализы помогают бизнесу расти.',
     initials: 'АК',
-    color: 'bg-blue-500'
+    color: 'bg-blue-400/70'
   },
   {
     id: 2,
@@ -21,7 +21,7 @@ const testimonials = [
     role: 'Lead Data Engineer',
     quote: 'Профессия оператора данных открывает двери в мир технологий. За 5 лет я вырос от Junior до Lead и увеличил доход в 4 раза.',
     initials: 'МП',
-    color: 'bg-purple-500'
+    color: 'bg-purple-400/70'
   },
   {
     id: 3,
@@ -29,7 +29,7 @@ const testimonials = [
     role: 'Data Architect',
     quote: 'Это одна из немногих профессий, где можно работать удаленно с мировыми компаниями. География больше не ограничивает карьерный рост.',
     initials: 'ЕС',
-    color: 'bg-green-500'
+    color: 'bg-green-400/70'
   },
   {
     id: 4,
@@ -37,7 +37,7 @@ const testimonials = [
     role: 'BI Developer',
     quote: 'Начинал с Excel, а теперь проектирую целые системы аналитики. Профессия дает возможность постоянно развиваться и осваивать новые инструменты.',
     initials: 'ДВ',
-    color: 'bg-orange-500'
+    color: 'bg-orange-400/70'
   },
   {
     id: 5,
@@ -45,7 +45,7 @@ const testimonials = [
     role: 'Data Scientist',
     quote: 'Данные — это новая нефть. Умение их правильно обрабатывать и интерпретировать делает специалиста незаменимым в любой отрасли.',
     initials: 'ОМ',
-    color: 'bg-pink-500'
+    color: 'bg-pink-400/70'
   }
 ];
 
@@ -54,47 +54,41 @@ const TestimonialsCarousel = () => {
 
   return (
     <div className="max-w-4xl mx-auto">
-      <Card className="border-0 shadow-lg bg-white min-h-[280px] flex items-center">
-        <CardContent className="p-12">
-          <div className="flex flex-col items-center text-center">
-            <Avatar className={`w-20 h-20 mb-6 ${testimonials[activeIndex].color}`}>
-              <AvatarFallback className="text-white text-xl font-semibold">
-                {testimonials[activeIndex].initials}
-              </AvatarFallback>
-            </Avatar>
-            <blockquote className="text-xl text-gray-700 leading-relaxed mb-6 max-w-2xl">
-              "{testimonials[activeIndex].quote}"
-            </blockquote>
-            <div>
-              <div className="font-semibold text-gray-900 text-lg">
-                {testimonials[activeIndex].name}
-              </div>
-              <div className="text-gray-600 text-sm">
-                {testimonials[activeIndex].role}
-              </div>
-            </div>
+      <div className="flex flex-col items-center text-center py-12">
+        <Avatar className={`w-16 h-16 mb-8 ${testimonials[activeIndex].color} transition-all duration-500`}>
+          <AvatarFallback className="text-white text-lg">
+            {testimonials[activeIndex].initials}
+          </AvatarFallback>
+        </Avatar>
+        
+        <blockquote className="text-2xl text-gray-600 leading-relaxed mb-8 max-w-3xl italic font-light">
+          "{testimonials[activeIndex].quote}"
+        </blockquote>
+        
+        <div className="mb-12">
+          <div className="text-gray-900 text-base font-normal">
+            {testimonials[activeIndex].name}
           </div>
-        </CardContent>
-      </Card>
+          <div className="text-gray-500 text-sm font-light">
+            {testimonials[activeIndex].role}
+          </div>
+        </div>
 
-      <div className="flex items-center justify-center gap-3 mt-8">
-        {testimonials.map((testimonial, idx) => (
-          <button
-            key={testimonial.id}
-            onClick={() => setActiveIndex(idx)}
-            className={`transition-all duration-300 ${
-              idx === activeIndex 
-                ? 'w-12 h-12 ring-2 ring-blue-600 ring-offset-2' 
-                : 'w-10 h-10 hover:scale-110 opacity-70 hover:opacity-100'
-            }`}
-          >
-            <Avatar className={`w-full h-full ${testimonial.color}`}>
-              <AvatarFallback className="text-white text-sm font-semibold">
-                {testimonial.initials}
-              </AvatarFallback>
-            </Avatar>
-          </button>
-        ))}
+        <div className="flex items-center justify-center gap-2">
+          {testimonials.map((testimonial, idx) => (
+            <button
+              key={testimonial.id}
+              onClick={() => setActiveIndex(idx)}
+              className={`transition-all duration-300 rounded ${
+                idx === activeIndex 
+                  ? 'w-10 h-10 ring-2 ring-blue-400 ring-offset-2' 
+                  : 'w-8 h-8 opacity-50 hover:opacity-100 hover:scale-110'
+              } ${testimonial.color}`}
+            >
+              <span className="sr-only">{testimonial.name}</span>
+            </button>
+          ))}
+        </div>
       </div>
     </div>
   );
