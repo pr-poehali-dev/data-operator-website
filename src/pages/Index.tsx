@@ -54,44 +54,48 @@ const TestimonialsCarousel = () => {
 
   return (
     <div className="max-w-3xl mx-auto">
-      <div className="flex flex-col items-center py-12">
-        <div className="w-full max-w-xl text-right">
-          <Avatar className="w-12 h-12 mb-6 ml-auto bg-gray-400/60 transition-all duration-500">
-            <AvatarFallback className="text-white text-sm">
-              {testimonials[activeIndex].initials}
-            </AvatarFallback>
-          </Avatar>
-          
-          <blockquote className="text-base text-gray-600 leading-relaxed mb-6 italic font-light">
-            "{testimonials[activeIndex].quote}"
-          </blockquote>
-          
-          <div className="mb-10">
-            <div className="text-gray-900 text-sm font-normal">
-              {testimonials[activeIndex].name}
+      <Card className="border-0 shadow-sm bg-white">
+        <CardContent className="p-10">
+          <div className="flex flex-col items-center">
+            <div className="w-full max-w-xl text-right">
+              <Avatar className="w-24 h-24 mb-6 ml-auto bg-gray-400/60 transition-all duration-500">
+                <AvatarFallback className="text-white text-xl">
+                  {testimonials[activeIndex].initials}
+                </AvatarFallback>
+              </Avatar>
+              
+              <blockquote className="text-sm text-gray-600 leading-relaxed mb-6 italic font-light">
+                "{testimonials[activeIndex].quote}"
+              </blockquote>
+              
+              <div className="mb-8">
+                <div className="text-gray-900 text-sm font-normal">
+                  {testimonials[activeIndex].name}
+                </div>
+                <div className="text-gray-500 text-xs font-light">
+                  {testimonials[activeIndex].role}
+                </div>
+              </div>
             </div>
-            <div className="text-gray-500 text-xs font-light">
-              {testimonials[activeIndex].role}
+
+            <div className="flex items-center justify-center gap-1.5">
+              {testimonials.map((testimonial, idx) => (
+                <button
+                  key={testimonial.id}
+                  onClick={() => setActiveIndex(idx)}
+                  className={`transition-all duration-300 rounded bg-gray-400 ${
+                    idx === activeIndex 
+                      ? 'w-2 h-2 opacity-100' 
+                      : 'w-2 h-2 opacity-30 hover:opacity-60'
+                  }`}
+                >
+                  <span className="sr-only">{testimonial.name}</span>
+                </button>
+              ))}
             </div>
           </div>
-        </div>
-
-        <div className="flex items-center justify-center gap-1.5">
-          {testimonials.map((testimonial, idx) => (
-            <button
-              key={testimonial.id}
-              onClick={() => setActiveIndex(idx)}
-              className={`transition-all duration-300 rounded bg-gray-400 ${
-                idx === activeIndex 
-                  ? 'w-2 h-2 opacity-100' 
-                  : 'w-2 h-2 opacity-30 hover:opacity-60'
-              }`}
-            >
-              <span className="sr-only">{testimonial.name}</span>
-            </button>
-          ))}
-        </div>
-      </div>
+        </CardContent>
+      </Card>
     </div>
   );
 };
