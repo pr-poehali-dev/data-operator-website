@@ -4,6 +4,101 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent } from '@/components/ui/card';
+import { Avatar, AvatarFallback } from '@/components/ui/avatar';
+
+const testimonials = [
+  {
+    id: 1,
+    name: 'Анна Ковалева',
+    role: 'Senior Data Analyst',
+    quote: 'Работа с данными — это возможность влиять на стратегические решения компании. Каждый день я вижу, как мои анализы помогают бизнесу расти.',
+    initials: 'АК',
+    color: 'bg-blue-500'
+  },
+  {
+    id: 2,
+    name: 'Михаил Петров',
+    role: 'Lead Data Engineer',
+    quote: 'Профессия оператора данных открывает двери в мир технологий. За 5 лет я вырос от Junior до Lead и увеличил доход в 4 раза.',
+    initials: 'МП',
+    color: 'bg-purple-500'
+  },
+  {
+    id: 3,
+    name: 'Елена Смирнова',
+    role: 'Data Architect',
+    quote: 'Это одна из немногих профессий, где можно работать удаленно с мировыми компаниями. География больше не ограничивает карьерный рост.',
+    initials: 'ЕС',
+    color: 'bg-green-500'
+  },
+  {
+    id: 4,
+    name: 'Дмитрий Волков',
+    role: 'BI Developer',
+    quote: 'Начинал с Excel, а теперь проектирую целые системы аналитики. Профессия дает возможность постоянно развиваться и осваивать новые инструменты.',
+    initials: 'ДВ',
+    color: 'bg-orange-500'
+  },
+  {
+    id: 5,
+    name: 'Ольга Морозова',
+    role: 'Data Scientist',
+    quote: 'Данные — это новая нефть. Умение их правильно обрабатывать и интерпретировать делает специалиста незаменимым в любой отрасли.',
+    initials: 'ОМ',
+    color: 'bg-pink-500'
+  }
+];
+
+const TestimonialsCarousel = () => {
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  return (
+    <div className="max-w-4xl mx-auto">
+      <Card className="border-0 shadow-lg bg-white min-h-[280px] flex items-center">
+        <CardContent className="p-12">
+          <div className="flex flex-col items-center text-center">
+            <Avatar className={`w-20 h-20 mb-6 ${testimonials[activeIndex].color}`}>
+              <AvatarFallback className="text-white text-xl font-semibold">
+                {testimonials[activeIndex].initials}
+              </AvatarFallback>
+            </Avatar>
+            <blockquote className="text-xl text-gray-700 leading-relaxed mb-6 max-w-2xl">
+              "{testimonials[activeIndex].quote}"
+            </blockquote>
+            <div>
+              <div className="font-semibold text-gray-900 text-lg">
+                {testimonials[activeIndex].name}
+              </div>
+              <div className="text-gray-600 text-sm">
+                {testimonials[activeIndex].role}
+              </div>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      <div className="flex items-center justify-center gap-3 mt-8">
+        {testimonials.map((testimonial, idx) => (
+          <button
+            key={testimonial.id}
+            onClick={() => setActiveIndex(idx)}
+            className={`transition-all duration-300 ${
+              idx === activeIndex 
+                ? 'w-12 h-12 ring-2 ring-blue-600 ring-offset-2' 
+                : 'w-10 h-10 hover:scale-110 opacity-70 hover:opacity-100'
+            }`}
+          >
+            <Avatar className={`w-full h-full ${testimonial.color}`}>
+              <AvatarFallback className="text-white text-sm font-semibold">
+                {testimonial.initials}
+              </AvatarFallback>
+            </Avatar>
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+};
 
 const Index = () => {
   const [formData, setFormData] = useState({
@@ -245,7 +340,18 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="contact" className="py-20 px-6 bg-gray-50">
+      <section className="py-20 px-6 bg-gray-50">
+        <div className="max-w-7xl mx-auto">
+          <div className="max-w-3xl mx-auto text-center mb-16">
+            <h2 className="text-5xl font-bold text-gray-900 mb-6">Мнения специалистов</h2>
+            <p className="text-xl text-gray-600">Что говорят профессионалы о работе с данными</p>
+          </div>
+
+          <TestimonialsCarousel />
+        </div>
+      </section>
+
+      <section id="contact" className="py-20 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="max-w-3xl mx-auto text-center mb-16">
             <h2 className="text-5xl font-bold text-gray-900 mb-6">Свяжитесь с нами</h2>
