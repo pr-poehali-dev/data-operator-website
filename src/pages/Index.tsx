@@ -57,13 +57,13 @@ const TestimonialsCarousel = () => {
       <Card className="border-0 shadow-sm bg-white">
         <CardContent className="p-10">
           <div className="flex flex-col items-center">
+            <Avatar className="w-24 h-24 mb-6 bg-gray-400/60 transition-all duration-500">
+              <AvatarFallback className="text-white text-xl">
+                {testimonials[activeIndex].initials}
+              </AvatarFallback>
+            </Avatar>
+            
             <div className="w-full max-w-xl text-right">
-              <Avatar className="w-24 h-24 mb-6 ml-auto bg-gray-400/60 transition-all duration-500">
-                <AvatarFallback className="text-white text-xl">
-                  {testimonials[activeIndex].initials}
-                </AvatarFallback>
-              </Avatar>
-              
               <blockquote className="text-sm text-gray-600 leading-relaxed mb-6 italic font-light">
                 "{testimonials[activeIndex].quote}"
               </blockquote>
