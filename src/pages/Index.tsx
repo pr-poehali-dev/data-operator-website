@@ -54,36 +54,36 @@ const TestimonialsCarousel = () => {
 
   return (
     <div className="max-w-4xl mx-auto">
-      <div className="flex flex-col items-center text-center py-12">
-        <Avatar className={`w-16 h-16 mb-8 ${testimonials[activeIndex].color} transition-all duration-500`}>
-          <AvatarFallback className="text-white text-lg">
+      <div className="flex flex-col items-end text-right py-12">
+        <Avatar className="w-14 h-14 mb-6 bg-gray-400/60 transition-all duration-500">
+          <AvatarFallback className="text-white text-base">
             {testimonials[activeIndex].initials}
           </AvatarFallback>
         </Avatar>
         
-        <blockquote className="text-2xl text-gray-600 leading-relaxed mb-8 max-w-3xl italic font-light">
+        <blockquote className="text-lg text-gray-600 leading-relaxed mb-6 max-w-2xl italic font-light">
           "{testimonials[activeIndex].quote}"
         </blockquote>
         
-        <div className="mb-12">
-          <div className="text-gray-900 text-base font-normal">
+        <div className="mb-10">
+          <div className="text-gray-900 text-sm font-normal">
             {testimonials[activeIndex].name}
           </div>
-          <div className="text-gray-500 text-sm font-light">
+          <div className="text-gray-500 text-xs font-light">
             {testimonials[activeIndex].role}
           </div>
         </div>
 
-        <div className="flex items-center justify-center gap-2">
+        <div className="flex items-center gap-1.5">
           {testimonials.map((testimonial, idx) => (
             <button
               key={testimonial.id}
               onClick={() => setActiveIndex(idx)}
-              className={`transition-all duration-300 rounded ${
+              className={`transition-all duration-300 rounded bg-gray-400 ${
                 idx === activeIndex 
-                  ? 'w-10 h-10 ring-2 ring-blue-400 ring-offset-2' 
-                  : 'w-8 h-8 opacity-50 hover:opacity-100 hover:scale-110'
-              } ${testimonial.color}`}
+                  ? 'w-2 h-2 opacity-100' 
+                  : 'w-2 h-2 opacity-30 hover:opacity-60'
+              }`}
             >
               <span className="sr-only">{testimonial.name}</span>
             </button>
